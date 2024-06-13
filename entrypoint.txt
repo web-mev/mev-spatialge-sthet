@@ -1,0 +1,1 @@
+Rscript /usr/local/bin/sthet.R -f {{raw_counts}} -c {{coords_metadata}} -s {{sample_name}} -n {{normalization_method}} -m "{{stat_method}}" -g {{features}}
