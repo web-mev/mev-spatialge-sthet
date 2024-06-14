@@ -123,7 +123,7 @@ out_table <- get_gene_meta(
     sthet_only=T
 )[, c('gene', 'gene_mean', 'gene_stdevs', stat_col)] %>% drop_na()
 
-output_filename <- 'sthet_output.tsv'
+output_filename <- paste(working_dir, 'sthet_output.tsv', sep='/')
 write.table(
     out_table,
     output_filename,
