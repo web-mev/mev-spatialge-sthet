@@ -74,6 +74,6 @@
             }
         }
     }, 
-    "mode": "local",
+    "mode": "local_docker",
     "workspace_operation": true
 }
