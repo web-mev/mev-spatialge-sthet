@@ -56,7 +56,7 @@
         "features": {
             "description": "One or more genes to test.", 
             "name": "Genes/features:", 
-            "required": false, 
+            "required": true, 
             "converter": "api.converters.element_set.FeatureSetCsvConverter",
             "spec": {
                 "attribute_type": "FeatureSet"

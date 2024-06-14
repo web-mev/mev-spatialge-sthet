@@ -78,6 +78,9 @@ if (is.null(opt$method)){
     quit(status=1)
 }
 
+working_dir <- dirname(opt$input_file)
+setwd(working_dir)
+
 # prepare an STList instance. Note that we are potentially re-mapping
 # the original gene identifiers to symbols such that they work with
 # the MSigDB files:
@@ -120,10 +123,15 @@ out_table <- get_gene_meta(
     sthet_only=T
 )[, c('gene', 'gene_mean', 'gene_stdevs', stat_col)] %>% drop_na()
 
+output_filename <- 'sthet_output.tsv'
 write.table(
     out_table,
-    'sthet_output.tsv',
+    output_filename,
     sep="\t",
     quote=F,
     row.names=F
 )
+
+json_str = paste0('{"SThet_results":"', output_filename, '"}')
+output_json <- paste(working_dir, 'outputs.json', sep='/')
+write(json_str, output_json)
