@@ -123,15 +123,19 @@ out_table <- get_gene_meta(
     sthet_only=T
 )[, c('gene', 'gene_mean', 'gene_stdevs', stat_col)] %>% drop_na()
 
-output_filename <- paste(working_dir, 'sthet_output.tsv', sep='/')
-write.table(
-    out_table,
-    output_filename,
-    sep="\t",
-    quote=F,
-    row.names=F
-)
-
-json_str = paste0('{"SThet_results":"', output_filename, '"}')
-output_json <- paste(working_dir, 'outputs.json', sep='/')
-write(json_str, output_json)
+if(dim(out_table)[1] > 0){
+    output_filename <- paste(working_dir, 'sthet_output.tsv', sep='/')
+    write.table(
+        out_table,
+        output_filename,
+        sep="\t",
+        quote=F,
+        row.names=F
+    )
+    json_str = paste0('{"SThet_results":"', output_filename, '"}')
+    output_json <- paste(working_dir, 'outputs.json', sep='/')
+    write(json_str, output_json)
+} else {
+    message("Note that the results table was empty. The input gene was indeed found in your abundance matrix, but the analysis was unable to successfully complete and report the spatial statistic. Sometimes, this is due to the gene having zero counts across all sampling areas.")
+    quit(status=1)
+}
