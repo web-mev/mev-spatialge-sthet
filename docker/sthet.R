@@ -33,6 +33,14 @@ option_list <- list(
     make_option(
         c('-g', '--gene_set'),
         help='The set of genes to test under SThet.'
+    ),
+    make_option(
+        c('-x', '--xpos_col'),
+        help='The column header for the x-position coordinate metadata'
+    ),
+    make_option(
+        c('-y', '--ypos_col'),
+        help='The column header for the y-position coordinate metadata'
     )
 )
 
@@ -81,12 +89,12 @@ if (is.null(opt$method)){
 working_dir <- dirname(opt$input_file)
 setwd(working_dir)
 
-# prepare an STList instance. Note that we are potentially re-mapping
-# the original gene identifiers to symbols such that they work with
-# the MSigDB files:
+# prepare an STList instance. 
 spat_list <- prep_stlist(opt$input_file, 
                          opt$coordinates_file,
-                         opt$sample_name)
+                         opt$sample_name,
+                         opt$xpos_col,
+                         opt$ypos_col)
 spat <- spat_list$spat
 
 # normalize

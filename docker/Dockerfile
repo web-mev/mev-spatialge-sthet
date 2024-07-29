@@ -1,4 +1,4 @@
-FROM ghcr.io/web-mev/base-spatialge-docker:sha-d38cc74eb7705991f074e32ce454e569965543ea
+FROM ghcr.io/web-mev/base-spatialge-docker:sha-358218764bf7470b87f40095a1941c944ee5553f
 
 USER root
 RUN mkdir -p /opt/resources && \
