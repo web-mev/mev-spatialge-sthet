@@ -98,7 +98,7 @@ spat_list <- prep_stlist(opt$input_file,
 spat <- spat_list$spat
 
 # normalize
-spat <- transform_data(spat, method=opt$normalization)
+spat <- transform_data(spat, method=norm_scheme)
 
 # check requested genes against this object:
 raw_counts <- spat@counts[[opt$sample_name]]
